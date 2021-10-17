@@ -22,13 +22,13 @@ module control(
     input z_flag
 	);
 
-    localparam ORI=6'b010000;
-    localparam ORUI=6'b010001;
-    localparam ALU=6'b000001;
-    localparam LW=6'b011000;
-    localparam SW=6'b011100;
-    localparam BEQ=6'b100100;
-    localparam JMP=6'b110000;
+    localparam ORI  =6'b010000;
+    localparam ORUI =6'b010001;
+    localparam ALU  =6'b000001;
+    localparam LW   =6'b011000;
+    localparam SW   =6'b011100;
+    localparam BEQ  =6'b100100;
+    localparam JMP  =6'b110000;
     
     // sel_pc
     always @(opcode) begin

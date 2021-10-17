@@ -53,13 +53,13 @@ parameter ADDR_WIDTH = 16;
     // set Mem-map I/O
     always @(address) begin
         case (address)
-            16'hFFF0 : data_out = num0;
-            16'hFFF4 : data_out = num1;
-            16'hFFF8 : data_out = num2;
-            16'hFFFC : data_out = num3;
-            16'hFFE0 : data_out = sw[3:0];
-            16'hFFE4 : data_out = sw[7:4];
-            16'hFFE8 : data_out = sw[11:8];
+            16'hFFF0 : data_out = {28'b0,num0};
+            16'hFFF4 : data_out = {28'b0,num1};
+            16'hFFF8 : data_out = {28'b0,num2};
+            16'hFFFC : data_out = {28'b0,num3};
+            16'hFFE0 : data_out = {28'b0,sw[3:0]};
+            16'hFFE4 : data_out = {28'b0,sw[7:4]};
+            16'hFFE8 : data_out = {28'b0,sw[11:8]};
             default : data_out = mem[address];
         endcase
     end

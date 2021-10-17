@@ -30,13 +30,9 @@ module nanocpu(
     assign addr=instruction[25:0];
     
     /////////////////////////////////////
-    reg	[31:0]	pc;
-    wire	sel_addpc, sel_pc;
-    wire 	[29:0] 	pc_add;
-    wire	pc_cout;
-    wire	[29:0] 	pc_add_b;
-    wire	[29:0]	addr_zeroext;
-    wire	[29:0]	pc_new;
+    reg	    [31:0]	pc;
+    wire	sel_addpc, sel_pc, pc_cout;
+    wire 	[29:0] 	pc_add, pc_add_b, addr_zeroext, pc_new;
     assign p_address=pc;
     assign instruction=p_data;
     assign addr_zeroext={{4{1'b0}},addr};
