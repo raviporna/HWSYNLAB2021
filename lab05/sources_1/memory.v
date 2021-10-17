@@ -20,10 +20,10 @@ parameter ADDR_WIDTH = 16;
     output [3:0] an;
     output dp;
 
-    reg	[3:0]	          mem[0:1<<ADDR_WIDTH -1];
+    reg	[3:0]	          mem[0:1<<ADDR_WIDTH-1];
     reg	[DATA_WIDTH-1:0]  data_out;
     // Tri-State buffer
-    assign data=(wr==0) ? data_out:32'bz;
+    assign data=(wr==0) ? data_out : 32'bz;
     
     ////////////////////////////////////////
     // Clock
@@ -53,14 +53,14 @@ parameter ADDR_WIDTH = 16;
     // set Mem-map I/O
     always @(address) begin
         case (address)
-            16'hFFF0 : data_out = {28'b0,num0};
-            16'hFFF4 : data_out = {28'b0,num1};
-            16'hFFF8 : data_out = {28'b0,num2};
-            16'hFFFC : data_out = {28'b0,num3};
-            16'hFFE0 : data_out = {28'b0,sw[3:0]};
-            16'hFFE4 : data_out = {28'b0,sw[7:4]};
-            16'hFFE8 : data_out = {28'b0,sw[11:8]};
-            default : data_out = mem[address];
+            16'hFFF0 : data_out = num0;
+            16'hFFF4 : data_out = num1;
+            16'hFFF8 : data_out = num2;
+            16'hFFFC : data_out = num3;
+            16'hFFE0 : data_out = sw[3:0];
+            16'hFFE4 : data_out = sw[7:4];
+            16'hFFE8 : data_out = sw[11:8];
+            default : data_out = mem[address];        
         endcase
     end
         
@@ -68,12 +68,13 @@ parameter ADDR_WIDTH = 16;
     begin : MEM_WRITE
         if (wr) begin
            case (address)
-               16'hFFF0 : num0 = data[3:0];
-               16'hFFF4 : num1 = data[3:0];
-               16'hFFF8 : num2 = data[3:0];
-               16'hFFFC : num3 = data[3:0];
-               default : mem[address] = data;
+                16'hFFF0 : num0 = data[3:0];
+                16'hFFF4 : num1 = data[3:0];
+                16'hFFF8 : num2 = data[3:0];
+                16'hFFFC : num3 = data[7:4];
+	            default : mem[address] = data;
             endcase
+        $display("%10d - MEM[%h] <- %h",$time, address, data);
         end
     end
     
