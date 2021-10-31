@@ -60,7 +60,7 @@ parameter ADDR_WIDTH = 16;
             16'hFFE0 : data_out = sw[3:0];
             16'hFFE4 : data_out = sw[7:4];
             16'hFFE8 : data_out = sw[11:8];
-            default : data_out = mem[address];        
+            default : data_out = mem[address];
         endcase
     end
         
