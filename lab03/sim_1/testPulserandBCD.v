@@ -29,10 +29,11 @@ module testPulser();
     singlePulser sp(d2,pushed,clk);
     BCDCounter bcd(outputs,cout,bout,set9,set0,inc,dec,clk);
     
+    // clock
     always
         #10 clk=~clk;
 
-    
+    // testPulser
     initial begin
         #0  clk=0;
         #20
@@ -44,6 +45,7 @@ module testPulser();
         #600 $finish;
     end
     
+    // testBCDcounter
     initial begin
         #0 inc=0;dec=0;set9=0;set0=0;
         #20
