@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // from https://embeddedthoughts.com/2016/07/29/driving-a-vga-monitor-using-an-fpga/
-// there are vga_sync and vga_test
-// modify something in vga_test
+// there are vga_sync and vga
+// modify something in vga
 
 module vga_sync(
     input wire clk, reset,
@@ -112,7 +112,7 @@ endmodule
 
 
 ////////////////////////////////////////////////
-module vga_test(
+module vga(
     input wire clk,
     input wire [11:0] sw,
     input wire [1:0] push,

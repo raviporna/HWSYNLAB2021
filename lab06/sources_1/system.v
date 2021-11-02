@@ -27,11 +27,10 @@ module system(
     output wire [3:0] vgaRed, vgaGreen, vgaBlue, //vga
     output wire RsTx, //uart
     input wire RsRx, //uart
-    output wire [10:0] led, //uart
     input clk //both
     );
     
-vga_test vga(
+vga vga(
     .clk(clk), .sw(sw),
     .push({btnL, btnU}),
     .hsync(Hsync), .vsync(Vsync),

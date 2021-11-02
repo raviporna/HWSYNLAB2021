@@ -41,6 +41,7 @@ module uart_rx(
         last_bit <= bit_in;
         count <= (receiving) ? count+1 : 0;
         
+        // sampling every 16 ticks
         case (count)
             8'd24:  data_out[0] <= bit_in;
             8'd40:  data_out[1] <= bit_in;
