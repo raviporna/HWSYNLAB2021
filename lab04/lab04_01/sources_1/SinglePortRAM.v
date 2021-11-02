@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+// note: this is not SINGLE port.
 module SinglePortRAM (
     output reg [7:0] addr , // Address
     output reg [7:0] dout, // Out
@@ -35,15 +36,15 @@ module SinglePortRAM (
     end
     
     always @(posedge clk) begin
-        if(we) begin
+        if(we) begin // write enable = write d_input into RAM
             mem[addr] = din;
             addr = addr+1;
         end
-        if(reset || (oe&&addr==0)) begin
+        if(reset || (oe&&addr==0)) begin // reset button or empty stack
             dout = 0;
             addr = 0;
         end
-        if(oe && addr > 0) begin
+        if(oe && addr > 0) begin // read from stack to d_output
             addr = addr-1;
             dout = mem[addr];
             mem[addr] = 0;

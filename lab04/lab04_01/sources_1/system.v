@@ -32,7 +32,7 @@ module system(
     );
     
     wire [3:0] num3,num2,num1,num0; // left to right
-    
+
     wire an0,an1,an2,an3;
     assign an={an3,an2,an1,an0};
     
