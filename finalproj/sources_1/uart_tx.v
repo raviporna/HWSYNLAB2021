@@ -33,13 +33,10 @@ module uart_tx(
     reg [7:0] temp;
     
     initial sent = 1;
-    
     always@(posedge clk) begin
         if (~sending & ~last_ena & ena) begin
             temp <= data_transmit;
-            sending <= 1;
-            sent <= 0;
-            count <= 0;
+            sending <= 1; sent <= 0; count <= 0;
         end
         
         last_ena <= ena;

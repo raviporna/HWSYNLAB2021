@@ -31,7 +31,6 @@ module uart_rx(
     reg [7:0] count;
     
     initial received = 1;
-    
     always@(posedge clk) begin
         if (~receiving & last_bit & ~bit_in) begin
             receiving <= 1;

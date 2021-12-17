@@ -22,8 +22,7 @@
 
 module singlePulser(
     output reg d,
-    input pushed,
-    input clk
+    input pushed, input clk
     );
     
     reg state;
@@ -31,7 +30,6 @@ module singlePulser(
     // 1 for pushed and still pushed
     
     initial state=0;
-    
     always @(posedge clk) begin
         d=0;
         case({pushed,state})
@@ -41,5 +39,4 @@ module singlePulser(
             2'b11: ;
         endcase
     end
-    
 endmodule

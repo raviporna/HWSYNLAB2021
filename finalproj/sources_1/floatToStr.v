@@ -21,17 +21,17 @@
 
 
 module floatToStr(
-    input   [63:0]  float,
-    output  [7:0]   signbuffer,
-    output  [47:0]  outputbufferBFD,
-    output  [47:0]  outputbufferAFD,
-    output  reg     validout
+    input signed [63:0]  float,
+    output       [7:0]   signbuffer,
+    output       [47:0]  outputbufferBFD,
+    output       [47:0]  outputbufferAFD,
+    output reg           validout
     );
     
-    reg     [63:0]  f1,f2;
-    reg     [7:0]   a1,a2,a3,a4,a5,a6;
-    wire    [15:0]  o1,o2,o3,o4,o5,o6;
-    wire            negative;
+    reg signed  [63:0]  f1,f2;
+    reg signed  [7:0]   a1,a2,a3,a4,a5,a6;
+    wire        [15:0]  o1,o2,o3,o4,o5,o6;
+    wire                negative;
     
     assign negative         = float[63];
     assign signbuffer       = (negative)? 8'h2D: 8'h2B;
@@ -59,7 +59,7 @@ module floatToStr(
         a4 = f2/10000; f2 = f2-a4*10000;
         a5 = f2/100;
         a6 = f2-a5*100;
-        if(a1>=100) validout = 0;
+        if(a1>=$signed(8'd100)) validout = 0;
         else validout = 1;
     end
 endmodule

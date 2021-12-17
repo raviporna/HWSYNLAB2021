@@ -22,24 +22,21 @@
 
 module calculator(
     input clk, input reset,
-    input wire [63:0]   inputval,
-    input wire [2:0]    op,
-    input wire          en,
-    output reg [63:0]   outputval
+    input wire signed [63:0]   inputval,
+    input wire        [2:0]    op,
+    input wire                 en,
+    output reg signed [63:0]   outputval
     );
     
     //////////////////////////////////
     // ALU
-    reg         [63:0]  currentval;     // current val in the accumulator
-    wire        [63:0]  aluval;
+    reg  signed [63:0] currentval;     // current val in the accumulator
+    wire signed [63:0] aluval;
     alu alu1(currentval, inputval, op, aluval);
     
-    //////////////////////////////////
-    // state
     reg state;
 
     initial begin state = 0; currentval = 0; end
-
     always @(posedge clk) begin
         if(reset)       begin currentval = 0;           state = 0; end
         case(state)
@@ -47,14 +44,13 @@ module calculator(
             1: if(~en)  begin outputval = currentval;   state = 0; end
         endcase
     end
-
 endmodule
 
 module alu(
-    input       [63:0]  A,
-    input       [63:0]  B,
-    input       [2:0]   op,
-    output reg  [63:0]  S
+    input       signed  [63:0]  A,
+    input       signed  [63:0]  B,
+    input               [2:0]   op,
+    output reg  signed  [63:0]  S
     );
     
     always@(A or B or op)
